@@ -22,7 +22,9 @@ class Config {
        public:
         explicit Config(const std::string& filename);
         ~Config();
-
+		static bool checkArgc(int argc);
+		static std::string setFile(int argc, char** argv);
+		static void  checkFile(std::string& filename);
         void printParser();
         void printServer(const std::vector<ServerContext>& server);
         // void printParserRecursion(ConfigNode* node, int depth = 0);
