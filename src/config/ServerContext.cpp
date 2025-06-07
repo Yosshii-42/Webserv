@@ -5,7 +5,7 @@ ServerContext::ServerContext(const std::string& text)
 
 ServerContext::~ServerContext() {}
 
-void ServerContext::setListen(const uint16_t port) { this->listen_ = port; }
+void ServerContext::setListen(const u_int16_t port) { this->listen_ = port; }
 
 void ServerContext::setHost(const std::string& host) { this->host_ = host; }
 
@@ -23,7 +23,7 @@ void ServerContext::setClientMaxBodySize(const size_t size) {
 
 std::string ServerContext::getValue() const { return (this->value_); } 
 
-uint16_t ServerContext::getListen() const { return (this->listen_); }
+u_int16_t ServerContext::getListen() const { return (this->listen_); }
 
 const std::string& ServerContext::getHost() const { return (this->host_); }
 

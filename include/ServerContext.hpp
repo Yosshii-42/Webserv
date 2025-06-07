@@ -12,7 +12,7 @@ class ConfigTokenizer;
 class ServerContext {
 	private:
 	 std::string value_;
-         uint16_t listen_;
+         u_int16_t listen_;
          std::string host_;
          std::vector<std::map<int, std::string> > errorPage_;
          size_t clientMaxBodySize_;
@@ -20,13 +20,13 @@ class ServerContext {
 	public:
 	 ServerContext(const std::string& text);
          ~ServerContext();
-         void setListen(const uint16_t port);
+         void setListen(const u_int16_t port);
          void setHost(const std::string& host);
          void addMap(const int number, const std::string& fileName);
          void setClientMaxBodySize(const size_t size);
         //  void addLocation();
 	 std::string getValue() const;
-         uint16_t getListen() const;
+         u_int16_t getListen() const;
          const std::string& getHost() const;
          const std::vector<std::map<int, std::string> >& getErrorPage() const;
          size_t getClientMaxBodySize() const;

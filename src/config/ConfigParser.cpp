@@ -11,7 +11,7 @@ ConfigParser::ConfigParser(ConfigTokenizer& tokenizer)
 	func_[1] = &ConfigParser::setHost_;
 	func_[2] = &ConfigParser::setErrPage_;
 	func_[3] = &ConfigParser::setMaxBodySize_;
-	// func_[3] = &ConfigParser::addtLocation_;
+	// func_[4] = &ConfigParser::addtLocation_;
         std::fill(keyFlag_, keyFlag_ + 16, 0);
         makeVectorServer_();
 }
@@ -75,7 +75,7 @@ void ConfigParser::setPort_(ServerContext& current, size_t* i) {
 		throwErr("", "Syntax error :", tokens[*i].getLineNumber());
 	std::string text = tokens[*i].getText();
 	if (tokens[*i].getType() == VALUE && Validator::number(text, LISTEN) == true)
-		current.setListen((uint16_t)atoi(text.c_str()));
+		current.setListen((u_int16_t)atoi(text.c_str()));
 	else{
 		throwErr("", "Syntax error :", tokens[*i].getLineNumber());
 	}
