@@ -23,7 +23,8 @@ class Config {
         ~Config();
 
         void printParser();
-        void printParserRecursion(ConfigNode* node, int depth = 0);
+        // void printParserRecursion(ConfigNode* node, int depth = 0);
+        void printServer(const std::vector<ServerContext>& server);
         ConfigTokenizer& getTokenizer();
         const ConfigParser& getParser() const;
 };

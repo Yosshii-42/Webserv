@@ -1,11 +1,11 @@
 NAME	= webserv
 CPP	= c++
 CPPFLAG	= -Wall -Wextra -Wall -std=c++98 -pedantic
-# CPPFLAG += -g -fsanitize=address
+CPPFLAG += -g -fsanitize=address
 INC_DIR	= include
 SRCS	= src/main.cpp \
 	  src/config/Config.cpp \
-	  src/config/ConfigNode.cpp \
+	  src/config/ServerContext.cpp \
 	  src/validator/Validator.cpp \
 	  src/config/ConfigTokenizer.cpp \
 	  src/config/ConfigParser.cpp \

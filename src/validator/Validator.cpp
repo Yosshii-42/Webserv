@@ -8,9 +8,11 @@ bool Validator::number(const std::string& number, int kind) {
         char* endP;
         int num = strtod(number.c_str(), &endP);
 
-        if (*endP) return (false);
+        if ((kind == LISTEN || kind == MAX_SIZE) && *endP != ';') return (false);
+	if (kind == ERR_PAGE && *endP) return (false);
         if (kind == LISTEN) return (num >= 0 && num <= 65535);
-        if (kind == MAX_SIZE) return (num > 0 && num < 1000000);
+        if (kind == MAX_SIZE) return (num > 0 && num <= 1000000);
+	if (kind == ERR_PAGE) return (num >= 100 && num <= 505);
         return (true);
 }
 
@@ -44,9 +46,9 @@ bool Validator::checkSyntaxErr(const Token& token, int depth) {
         std::string text = token.getText();
 
         if ((kind == SERVER && depth != 0) ||
-            (kind == LOCATION && depth != 1) ||
+        //     (kind == LOCATION && depth != 1) ||
             (kind == ERR_PAGE && depth == 0) ||
-            ((kind >= LISTEN && kind <= RETURN) && depth == 0))
+            ((kind >= LISTEN && kind <= REDIRECT) && depth == 0))
                 return (false);
         return (true);
 }
