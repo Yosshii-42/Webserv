@@ -1,9 +1,4 @@
-#include <signal.h>
-
-#include <exception>
-
 #include "Config.hpp"
-#include "ConfigParser.hpp"
 
 bool checkArgc(int argc) {
         if (argc > 2) {
