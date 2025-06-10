@@ -1,13 +1,15 @@
 #include "ConfigTokenizer.hpp"
 
 #include <fstream>
+#include <iterator>
 #include <sstream>
 #include <stdexcept>
 
 ConfigTokenizer::ConfigTokenizer(std::string& filename) {
         std::ifstream file(filename.c_str());
-        if (!file)
+        if (!file) {
                 throw(std::runtime_error("Failed to open file: " + filename));
+        }
         makeTokenList_(file);
 }
 
@@ -34,7 +36,7 @@ void ConfigTokenizer::makeTokenList_(std::ifstream& file) {
                 std::istringstream tokenStream(oneLine);
                 std::string token;
                 while (tokenStream >> token) {  // 空白区切りでtokenをset
-                        Token newToken(token, lineCount);
+                        const Token newToken(token, lineCount);
                         this->tokens_.push_back(newToken);
                         tokenStream.clear();
                 }
@@ -43,9 +45,12 @@ void ConfigTokenizer::makeTokenList_(std::ifstream& file) {
 }
 
 void ConfigTokenizer::checkLineEnd(const std::string& line,
-                                   const int lineCount) {
-        char c = line[line.size() - 1];
-        if (!(line.empty() || c == '{' || c == '}' || c == ';')) {
+                                   int lineCount) {
+        if (line.empty()) {
+                return ;
+        }
+        const char chara = line[line.size() - 1];
+        if (chara != '{' && chara != '}' && chara != ';') {
                 throw(std::runtime_error(
                     line + ": Syntax error at the end of the line: line " +
                     numberToStr(lineCount)));
