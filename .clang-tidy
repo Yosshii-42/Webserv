@@ -39,11 +39,8 @@ CheckOptions:
   - key: readability-identifier-length.MinimumLoopCounterNameLength
     value: 1
 
-# 特定のファイルやディレクトリを除外
-HeaderFilterRegex: '.*'
-
 # 警告をエラーとして扱うかどうか
-WarningsAsErrors: ''
+WarningsAsErrors: '*'
 
 # フォーマット設定（clang-formatと連携）
 FormatStyle: google
